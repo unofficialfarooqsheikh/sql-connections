@@ -4,8 +4,16 @@ var db = require('../core/db');
 // db.executeSql is available here
 
 exports.getList=function(req, resp){ //gets all the employee lists
-    db.executeSql("SELECT * FROM Employee", function(){
-
+    db.executeSql("SELECT * FROM Employee", function(data,err){ //this will be executed in db.js
+        if(err){
+            resp.writeHead(500, "internal Error Occured",{"Content-Type":"text/html"});//defining the error (500 is code for internal error)
+            resp.write("<html><body><title>500</title>500 Internal Error. Details:"+err+"</boy></html>")//Returning the error as a html page
+        }
+        else{
+            resp.writeHead(200,{"Content-Type":"application/json"});//200 IS CODE FOR SUCCESS
+            resp.write(JSON.stringify(data));//What ever iam getting in the data is being converted to JSON
+        }
+        resp.end();//the error info is sent to the client after ending 
     });
 };
 

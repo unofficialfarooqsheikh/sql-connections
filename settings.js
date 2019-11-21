@@ -8,3 +8,5 @@ exports.dbConfig = { //exports for using this dbConfig in other file(ex:db.js)
         trustedConnection: true,
     }
 };
+
+exports.webPort = 9000;

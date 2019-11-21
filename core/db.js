@@ -3,7 +3,7 @@ var settings = require('../settings');//import from settigns.js
 // settings.dbConfig is available here
 
 exports.executeSql = function (sql,callback) {//exports for using this executeSql in other file
-    var conn = new sql.ConnectionPool(settings.dbConfig); //^(this line is just instance of sql connection)
+    var conn = new sql.Connection(settings.dbConfig); //^(this line is just instance of sql connection)
     conn.connect
     .then(function () { 
         var req = new sql.Request(conn); //Request instance from connection
